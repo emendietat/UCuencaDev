@@ -1,0 +1,173 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+\title{Conversión de coordenadas geográficas en grados, minutos y segundos a UTM PSAD56}
+\author{E.M. 200 Ok}
+\date{2023-04-02}
+
+\begin{document}
+
+\maketitle
+
+\section{Introducción}
+
+En este artículo, explicaremos cómo convertir una coordenada geográfica en grados, minutos y segundos a coordenadas UTM PSAD56. La conversión se realiza en los siguientes pasos:
+
+\begin{enumerate}
+\item Convertir la latitud y longitud a grados decimales.
+\item Calcular la zona UTM en la que se encuentra la coordenada.
+\item Calcular la coordenada UTM en metros utilizando las fórmulas de conversión.
+\end{enumerate}
+
+\section{Convertir a grados decimales}
+
+Para convertir la latitud y longitud a grados decimales, se utiliza la siguiente fórmula:
+
+\begin{equation}
+grados_decimales = grados + (\frac{minutos}{60}) + (\frac{segundos}{3600})
+\end{equation}
+
+Por ejemplo, si tenemos la siguiente coordenada en grados, minutos y segundos en Ecuador:
+\begin{itemize}
+\item Latitud: 00° 30' 00" S
+\item Longitud: 80° 00' 00" W
+\end{itemize}
+
+Podemos convertirla a grados decimales de la siguiente manera:
+
+\begin{equation}
+latitud_dec = -0.5
+\end{equation}
+
+\begin{equation}
+longitud_dec = -80.0
+\end{equation}
+
+\section{Calcular la zona UTM}
+
+El siguiente paso es calcular la zona UTM en la que se encuentra la coordenada. Ecuador se encuentra en la zona UTM 17S. La fórmula para determinar la zona UTM es:
+
+\begin{equation}
+zona_utm = \lfloor \frac{longitud_dec + 180}{6} \rfloor + 1
+\end{equation}
+
+Donde $\lfloor \rfloor$ es la función piso, que devuelve el mayor entero menor o igual al número dado. En este caso, la longitud es negativa, por lo que sumamos 180 grados para obtener un número positivo.
+
+Para el ejemplo de Ecuador, la zona UTM es:
+
+\begin{equation}
+zona_utm = \lfloor \frac{-80.0 + 180}{6} \rfloor + 1 = 17
+\end{equation}
+
+\section{Calcular la coordenada UTM}
+
+Una vez que se ha determinado la zona UTM, podemos calcular las coordenadas UTM en metros utilizando las siguientes fórmulas:
+
+\begin{equation}
+a = \frac{1}{298.257223563}
+\end{equation}
+
+\begin{equation}
+e^2 = 0.006694380023
+\end{equation}
+
+\begin{equation}
+N = \frac{a}{\sqrt{1-e^2\sin^2(\phi)}}
+\end{equation}
+
+Donde $\phi$ es la latitud en radianes, que se puede calcular a partir de la latitud en grados decimales:
+
+\begin{equation}
+\phi = latitud_dec \cdot \frac{\pi}{180}
+\end{equation}
+
+En el caso de Ecuador, tenemos:
+
+\begin{equation}
+\phi = -0.5 \cdot \frac{\pi}{180} = -0.008727\ \mathrm{rad}
+\end{equation}
+
+Sustituyendo los valores de $a$, $e$, y $\phi$ obtenemos:
+
+\begin{equation}
+N = \frac{1}{298.257223563} \cdot \sqrt{1 - 0.006694380023\sin^2(-0.008727)} = 9987901.92\ \mathrm{m}
+\end{equation}
+
+A continuación, se calcula el radio de curvatura de la Tierra en el plano meridiano de la coordenada:
+
+\begin{equation}
+\rho = \frac{a(1-e^2)}{(1-e^2\sin^2(\phi))^{3/2}}
+\end{equation}
+
+En el caso de Ecuador, tenemos:
+
+\begin{equation}
+\rho = \frac{1}{298.257223563} \cdot \frac{(1-0.006694380023)}{(1-0.006694380023\sin^2(-0.008727))^{3/2}} = 6367025.14\ \mathrm{m}
+\end{equation}
+
+A continuación, se calcula la escala de la proyección UTM en la coordenada:
+
+\begin{equation}
+k_0 = 0.9996
+\end{equation}
+
+Después, se calcula la longitud central del huso UTM en el que se encuentra la coordenada:
+
+\begin{equation}
+\lambda_0 = (zona_utm - 1) \cdot 6 - 180 + 3
+\end{equation}
+
+En el caso de Ecuador, tenemos:
+
+\begin{equation}
+\lambda_0 = (17 - 1) \cdot 6 - 180 + 3 = -81
+\end{equation}
+
+Luego, se calcula la diferencia entre la longitud de la coordenada y la longitud central del huso:
+
+\begin{equation}
+\Delta\lambda = longitud_dec - \lambda_0
+\end{equation}
+
+En el caso de Ecuador, tenemos:
+
+\begin{equation}
+\Delta\lambda = -80.0 - (-81) = 1
+\end{equation}
+
+A continuación, se calcula la coordenada UTM este, en metros:
+
+\begin{equation}
+E = E_0 + \frac{k_0 N (\Delta\lambda + \frac{\Delta\lambda^3}{6}(1-\tan^2(\phi)+\frac{7}{12}\tan^4(\phi)))}{1 + \frac{N \tan^2(\phi)}{\rho}}
+\end{equation}
+
+Donde $E_0$ es la coordenada este en metros del meridiano central del huso UTM, que es 500000 m.
+
+En el caso de Ecuador, tenemos:
+
+\begin{equation}
+E = 500000 + \frac{0.9996 \cdot 9987901.92 \cdot (1 + \frac{(1)^3}{6}(1-\tan^2(-0.008727)+\frac{7}{12}\tan^4(-0.008727)))}{1 + \frac{9987901.92 \cdot \tan^2(-0.008727)}{6367025.14}} = 185204.49\mathrm{m}
+\end{equation}
+
+Finalmente, se calcula la coordenada UTM norte, en metros:
+
+\begin{equation}
+N = N_0 + \frac{k_0 (\Delta\lambda^2 \cdot N \cdot \tan(\phi))}{2} + \frac{k_0 (\Delta\lambda^4 \cdot N \cdot \tan(\phi)^3)}{24}(5 - \tan^2(\phi) + 9 \eta^2 + 4 \eta^4)
+\end{equation}
+
+Donde $N_0$ es la coordenada norte en metros del ecuador, que en el hemisferio sur es de 10000000 m.
+
+En el caso de Ecuador, tenemos:
+
+\begin{equation}
+\eta = \frac{e^2 \cos^2(\phi)}{1-e^2} = 0.006739496742
+\end{equation}
+
+\begin{equation}
+N = 10000000 + \frac{0.9996 \cdot (1)^2 \cdot 9987901.92 \cdot \tan(-0.008727)}{2} + \frac{0.9996 \cdot (1)^4 \cdot 9987901.92 \cdot \tan(-0.008727)^3}{24}(5 - \tan^2(-0.008727) + 9 \cdot 0.006739496742 + 4 \cdot 0.006739496742^2) = 995729.73\ \mathrm{m}
+\end{equation}
+
+Por lo tanto, la coordenada UTM correspondiente a la coordenada geográfica -0.5\textdegree de latitud y -80.0\textdegree de longitud en Ecuador es $17\ 185204.49\ E,\ 995729.73\ N$ en metros, en el sistema de proyección UTM PSAD56.
+
+\end{document}

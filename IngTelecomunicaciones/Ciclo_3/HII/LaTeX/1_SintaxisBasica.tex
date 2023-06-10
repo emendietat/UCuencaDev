@@ -1,0 +1,99 @@
+% Encabezado --------------------------------------------------
+\documentclass[12pt]{article} % Tipos: article, report, book, letter
+\usepackage[utf8]{inputenc} % Permite caracteres especiales.
+\usepackage[spanish]{babel} % Habilita idioma en castellano.
+\usepackage{xcolor} % Habilitan color en el texto.
+\usepackage{soul} % Resaltar texto.
+\usepackage[a4paper]{geometry} % Geometria del documente, margenes.
+\usepackage{graphicx}  % Permite insertar figuras en el doc.
+\usepackage{enumitem}
+
+
+\geometry{tmargin=3.5cm, lmargin=2.5cm, rmargin=2.5cm, bmargin=1.8cm}
+\title{Exploración de Overleaf para sintáxis de \LaTeX} % Propio para documentos de tipo article.
+\author{Eduardo Mendieta T.} % Propio para documentos de tipo article.
+\date{\today} % \now \today  % Propio para documentos de tipo article.
+
+% Documento --------------------------------------------------
+\begin{document}
+
+\tableofcontents % Propio para documentos de tipo report para generar tabla de contenidos
+\listoffigures
+\listoftables
+
+\maketitle % Propio para documentos de tipo article.
+
+% ********************************** Conseptos Básicos **********************************
+\section{Hola mundo en \LaTeX}
+
+% \chapter{Introduction} Propio para documentos de tipo report para generar subsecciones
+\section{Comandos Básicos}
+Hola Mundo sin negrita \textbf{Hola mundo en negrita.} \textcolor{red}{Texto en color rojo!} \hl{texto resaltado en amarillo por defecto, ya que se necesita de macros para cambiar el color de resaltado.}
+
+% ************************************* Figuras ****************************************
+\section{Figuras}
+Hola Mundo!
+
+La figura \ref{fig:spideyandrew} muestra...
+
+% Recomendacion: Las figuras van al inicio o al final de la página, no entre textos.
+\begin{figure}[!h]  % Objeto de ambiente flotante
+    \centering
+    \includegraphics[width = 0.3\textwidth]{figs/andrewspider.jpg}
+    \caption{Spidey de Andrew Garfield}
+    \label{fig:spideyandrew}
+\end{figure}
+
+\begin{figure}[!h]  % La figura se encuentra flotando. '!' Fuerza a cumplir el comando
+    \centering
+    \includegraphics[width = 0.3\textwidth]{figs/andrewspider.jpg}
+    \caption{Spidey de Andrew Garfield 2}
+    \label{fig:spideyandrew2}
+\end{figure}
+
+\begin{figure}
+    \centering
+    \begin{tabular}{c c}
+        \includegraphics[width=0.4\textwidth]{figs/andrewspider.jpg} &  
+        \includegraphics[width=0.4\textwidth]{figs/andrewspider.jpg} \\
+    \end{tabular}
+\end{figure}
+
+
+La figura \ref{fig:spideyandrew2} muestra la ... Proin eu leo sed felis faucibus fermentum. Integer urna nisl, commodo vel urna ut, ornare pharetra ipsum. Etiam elementum orci quis ullamcorper pretium. Nunc dignissim tincidunt dolor, non hendrerit massa dictum tincidunt. Duis sit amet est arcu. Aenean faucibus ante sit amet ex fermentum pharetra. Fusce non urna non augue tincidunt pretium. Praesent vitae vehicula erat. Maecenas egestas in turpis at malesuada. Sed rhoncus magna id massa ullamcorper, ut sagittis dolor aliquam.
+
+% ************************************** Tablas ****************************************
+\section{Tablas}
+
+% Utilizar un generador de tablas en latex. Tables Generator.
+% Normalmente se las tablas se hubican en el lugar en el que deseamos poner.
+\begin{table}[!t] % Objeto de ambiente flotante
+    \centering
+    \caption{Titular de la tabla} % Por convención tecnica debe ir en esta posición.
+    \label{tab:tabla1} % Por convención tecnica debe ir en esta posición.
+    \begin{tabular}{| l | c | c | r |}         \hline % dibuja las lineas horizontales que forman la cuadricula.
+         \textbf{Caracteristica} &  \textbf{PID} & \textbf{MPC} & \textbf{MRAC} \\ \hline 
+         tss(s)                  &  10           & 8            &     8.5       \\ \hline
+         Mp(\%)                  &  15           & 5            &     2.8       \\ \hline
+    \end{tabular}
+\end{table}
+% \subfigure --> investigar.
+% \vspace{1.0em}, \hspace{5em} - Espacios verticales y horizontales 
+
+% ************************************** listas ****************************************
+\section{Listas}
+\begin{itemize}
+    \item [$-$] Item 1.
+    \item [.] Item 2.
+    \item [$-$] Item 3.
+    \item [*] Item 4.
+\end{itemize}
+
+\begin{enumerate} [label=\alph*.] % \alph*., \Alph*.
+    \item  Item 1.
+    \item  Item 2.
+    \item  Item 3.
+    \item  Item 4.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,270 @@
+\documentclass[11pt]{article} 
+
+% ------------------------- PAQUETES -------------------------
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage{xcolor}
+\usepackage{titlesec} % Habilita la modificacion de Titulos de sección
+\usepackage{amssymb} % Habilita acceso a símbolos
+\usepackage{amsmath}
+\usepackage{tikz}
+\usepackage{fullpage}
+\usepackage[a4paper]{geometry}
+\usepackage{microtype}
+\usepackage{enumitem} % Habilita el agregado de sangria en listas numeradas y no numeradas}
+\usepackage{graphicx}
+\usepackage{transparent}
+\usepackage{eso-pic}
+
+
+% ------------------------- PREÁBULO -------------------------
+\geometry{tmargin=3.5cm, lmargin=2.5cm, rmargin=2.5cm, bmargin=1.8cm}
+
+\titleformat{\section} % Modifica el formato de \section
+    {\color{blue}\bfseries}
+    {\color{blue}\arabic{section}.}{0.5em}{\color{blue}}
+
+\titleformat{\subsection}[runin]
+    {\color{blue}\bfseries}{\thesubsection}{1em}{}
+
+\setlength{\parindent}{0pt}
+\leftskip=0.5cm
+
+% Marca de agua:
+\AddToShipoutPictureBG{
+  \AtPageCenter{
+    \begin{picture}(0,0)
+      \put(-300,-60){%
+        \makebox[\paperwidth][c]{%
+          \transparent{0.3}%
+          \includegraphics[width=0.3\paperwidth,height=0.3\paperheight,keepaspectratio]{figs/logoUCuenca.png}%
+        }%
+      }%
+    \end{picture}
+  }
+}
+
+% ------------------------- ENCABEZADO -------------------------
+\title{Tarea de \LaTeX}
+\author{Benévolo Capataz, Mr.}
+\date{\today}
+
+
+% ------------------------- DOCUMENTO -------------------------
+\begin{document}
+
+    \maketitle
+
+    % ********************| 1. DATOS DE LA TAREA |********************
+    \section{\Large Datos de la tarea}
+    
+        \begin{itemize}
+            \renewcommand{\labelitemi}{\tiny\raisebox{0.5ex}{{$\blacksquare$}}}
+            
+            \item \textbf{Materia:} Herramientas informáticas para ingeniería
+            \item \textbf{Tarea:} Tarea \#1, introducción a \LaTeX mediante ejemplos sencillos
+            \item \textbf{Nombre:} E.M. 200 Ok 
+            \item \textbf{Cédula:} CI. 
+            \item \textbf{Fecha:} \date{\today}  
+            
+        \end{itemize}
+
+    % ********************| 2. INTRODUCCIÓN |********************
+    \section{\Large Introducción} \vspace{-10pt}
+        Esta es una tarea de \LaTeX. El objetivo es producir un archivo .tex que genere una salida
+        aproximadamente igual a esta. Hagan un documento de clase {\tt article} a 11 puntos. Tengan
+        cuidado con los márgenes, y verifiquen que los renglones se rompen en las mismas palabras.
+        \\ [5pt]
+        Usen el paquete {\tt fullpage} para ajustar los márgenes.
+
+
+    % ********************| 3. LISTAS |********************
+    \section{\Large Listas} \vspace{-10pt}
+        Hay varios tipos de listas en \LaTeX.
+
+        \subsection{\Large Lista no enumerada}
+            \begin{itemize}[leftmargin=2cm]
+                \renewcommand{\labelitemi}{\tiny\raisebox{0.5ex}{{$\blacksquare$}}}
+                \item Primer elemento
+                \item Segundo elemento
+                \item Tercer elemento
+            \end{itemize}
+            
+        \subsection{\textcolor{black}{Lista enumerada}}
+            \begin{enumerate}[leftmargin=2cm]
+                \item Elemento número 1
+                \item Elemento número 2
+                \item Elemento número 3
+            \end{enumerate}
+        \newpage    
+
+        \begin{table}[!h]
+            \renewcommand{\tablename}{Tabla}
+            \centering
+            \caption{Esta tabla fue incluida como una tabla flotante. Nótese el nombre \textbf{tabla} en lugar de cuadro.}
+            \label{tab:tabla1} 
+            \begin{tabular}{|l|l|l|} \hline
+                tipo    & \multicolumn{2}{c|}{Estilo}  \\ \hline 
+                suprema & rojo        & gigante        \\ \hline
+                mediana & rosa        & grande         \\ \hline
+                pobre   & blanco      & pequeño        \\ \hline
+            \end{tabular}
+        \end{table}
+        
+
+     % ********************| 4. DESCRIPCIÓN |********************
+    \section{\Large Descripción} \vspace{-10pt}
+        \textbf{Algoritmo genético} Método de búsqueda (diseño, optimización) basado en la mecánica de la
+        selección natural y la idea darwiniana de la supervivencia de acuerdo a la aptitud. \\
+        \textbf{Recocido simulado} Método de optimización que abstrae el proceso natural de enfriamiento y
+        cristalización de un material.
+
+
+     % ********************| 5. TABLAS |********************
+    \section{\Large Tablas} \vspace{-10pt}
+        Es posible crear tablas muy complejas. Por ejemplo, la tabla \ref{tab:tabla1}.
+
+
+     % ********************| 6. MATEMÁTICAS |********************
+    \section{\Large Matemáticas} \vspace{-10pt}
+        Es posible insertar una ecuación dentro de texto, por ejemplo, $\sum_{i=1}^k 2^i$. también es posible incluir ecuaciones desplegadas: \vspace{0.5cm}
+
+        \begin{equation}
+            p_{11}(t + 1) = p_{11}(t) \frac{f_{11}}{f(t)} \left[1 - p'_c\frac{f_{00}}{f(t)}f_{00}(t)\right] + p'_c \frac{f_{01}f_{10}}{f(t)} p_{10}(t)p_{10}(t)
+        \end{equation}
+
+        Un ejemplo una ecuación: \vspace{0.5cm}
+        
+        \begin{equation}
+            q' \leq \frac{1}{\sqrt{2\pi}}\frac{e^{-x_{0}^{2}/{2}}}{x_{0}} = \frac{1}{\sqrt{2\pi}}\frac{\sqrt{\frac{\sigma_{1}^{2}}{n}+\frac{\sigma_{2}^{2}}{N-n}}}{\mu_{1}-\mu_{2}}exp
+        \end{equation} \vspace{0.5cm}
+        
+        Y un ejemplo de un arreglo de ecuaciones:
+
+        \begin{equation}
+            P_1(x) = f_1\frac{x-x_2}{x_1-x_2} + f_2\frac{x-x_1}{x_2-x_1}
+        \end{equation}
+
+        \begin{equation}
+            P_2(x) = f_1\frac{(x-x_2)(x-x_3)}{(x_1-x_2)(x_1-x_3)} + f_2\frac{(x-x_1)(x-x_3)}{(x_2-x_1)(x_2-x_3)} + f_3\frac{(x-x_1)(x-x_2)}{(x_3-x_1)(x_3-x_2)}
+        \end{equation}\ \vspace{0.5cm}
+        
+        \begin{quote}
+            \indent Nótese la identación (sangría) de este renglón.
+        \end{quote}
+
+        \begin{equation}
+            D = \text{matriz diagonalizada} = 
+            \begin{bmatrix}
+                \lambda_1 & 0          & \dots      & 0         \\
+                0         & \lambda_2  & \dots      & 0         \\
+                \vdots    &            & \ddots     &           \\
+                0         & 0          & \dots      & \lambda_n \\
+            \end{bmatrix}
+        \end{equation}       
+
+        Y como este rrenglón no está identado.
+        
+
+     % ********************| 7. GRÁFICO CON TIKZ |********************
+    \section{\textcolor{black}{Ejemplo de gráfico usando el paquete Tikz}}
+
+        \begin{figure} [ht]
+            \centering
+ 
+            \tikzset{every picture/.style={line width=0.75pt}} %set default line width to 0.75pt        
+            
+                \begin{tikzpicture}[x=0.70pt,y=0.70pt,yscale=-1,xscale=1]
+                %uncomment if require: \path (0,328); %set diagram left start at 0, and has height of 328
+                
+                %Shape: Circle [id:dp08745436756173519] 
+                \draw  [line width=1.5]  (46,85.5) .. controls (46,78.04) and (52.04,72) .. (59.5,72) .. controls (66.96,72) and (73,78.04) .. (73,85.5) .. controls (73,92.96) and (66.96,99) .. (59.5,99) .. controls (52.04,99) and (46,92.96) .. (46,85.5) -- cycle ;
+                %Straight Lines [id:da6137457580004044] 
+                \draw [line width=1.5]    (14,86) -- (42,86) ;
+                \draw [shift={(45,86)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (14.21,-4.28) .. controls (9.04,-1.82) and (4.3,-0.39) .. (0,0) .. controls (4.3,0.39) and (9.04,1.82) .. (14.21,4.28)   ;
+                %Straight Lines [id:da9340927859399575] 
+                \draw [line width=1.5]    (72,85) -- (111,85) ;
+                \draw [shift={(114,85)}, rotate = 180] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (14.21,-4.28) .. controls (9.04,-1.82) and (4.3,-0.39) .. (0,0) .. controls (4.3,0.39) and (9.04,1.82) .. (14.21,4.28)   ;
+                %Shape: Rectangle [id:dp029509435973599007] 
+                \draw  [line width=1.5]  (112,39) -- (340,39) -- (340,130) -- (112,130) -- cycle ;
+                %Straight Lines [id:da31932841749449836] 
+                \draw [line width=1.5]    (340,82) -- (408,81.04) ;
+                \draw [shift={(411,81)}, rotate = 179.19] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (14.21,-4.28) .. controls (9.04,-1.82) and (4.3,-0.39) .. (0,0) .. controls (4.3,0.39) and (9.04,1.82) .. (14.21,4.28)   ;
+                %Shape: Circle [id:dp5921331842929629] 
+                \draw  [line width=1.5]  (407,81) .. controls (407,78.79) and (408.79,77) .. (411,77) .. controls (413.21,77) and (415,78.79) .. (415,81) .. controls (415,83.21) and (413.21,85) .. (411,85) .. controls (408.79,85) and (407,83.21) .. (407,81) -- cycle ;
+                %Straight Lines [id:da9906027992235933] 
+                \draw [line width=1.5]    (674,81) -- (675,255) ;
+                %Straight Lines [id:da3044247528892088] 
+                \draw [line width=1.5]    (414,81) -- (428,81) ;
+                %Shape: Resistor [id:dp15966077548577506] 
+                \draw  [line width=1.5]  (424,81) -- (435.52,81.03) -- (438.13,66.53) -- (443.16,95.57) -- (448.37,66.56) -- (453.4,95.6) -- (458.61,66.59) -- (463.64,95.63) -- (468.85,66.62) -- (473.88,95.66) -- (476.49,81.16) -- (488.01,81.19) ;
+                %Straight Lines [id:da5779762185172914] 
+                \draw [line width=1.5]    (485.01,81.19) -- (515,81) ;
+                %Shape: Inductor (Air Core) [id:dp9212031754790495] 
+                \draw  [line width=1.5]  (508.96,81) -- (523,81) .. controls (523.2,76.07) and (525.15,71.85) .. (527.91,70.37) .. controls (530.67,68.9) and (533.67,70.46) .. (535.48,74.32) .. controls (536.87,77.33) and (537.44,81.23) .. (537.04,85.01) .. controls (537.04,86.48) and (536.34,87.68) .. (535.48,87.68) .. controls (534.62,87.68) and (533.92,86.48) .. (533.92,85.01) .. controls (533.52,81.23) and (534.09,77.33) .. (535.48,74.32) .. controls (537.1,71.12) and (539.36,69.3) .. (541.72,69.3) .. controls (544.08,69.3) and (546.34,71.12) .. (547.96,74.32) .. controls (549.35,77.33) and (549.92,81.23) .. (549.52,85.01) .. controls (549.52,86.48) and (548.82,87.68) .. (547.96,87.68) .. controls (547.1,87.68) and (546.4,86.48) .. (546.4,85.01) .. controls (546,81.23) and (546.57,77.33) .. (547.96,74.32) .. controls (549.58,71.12) and (551.84,69.3) .. (554.2,69.3) .. controls (556.56,69.3) and (558.82,71.12) .. (560.44,74.32) .. controls (561.83,77.33) and (562.4,81.23) .. (562,85.01) .. controls (562,86.48) and (561.3,87.68) .. (560.44,87.68) .. controls (559.58,87.68) and (558.88,86.48) .. (558.88,85.01) .. controls (558.48,81.23) and (559.05,77.33) .. (560.44,74.32) .. controls (562.25,70.46) and (565.25,68.9) .. (568.01,70.37) .. controls (570.77,71.85) and (572.72,76.07) .. (572.92,81) -- (586.96,81) ;
+                %Straight Lines [id:da39069238572150944] 
+                \draw [line width=1.5]    (581,81) -- (615,81) ;
+                %Shape: Circle [id:dp18036168253118845] 
+                \draw  [fill={rgb, 255:red, 27; green, 26; blue, 26 }  ,fill opacity=1 ] (604,81) .. controls (604,78.79) and (605.79,77) .. (608,77) .. controls (610.21,77) and (612,78.79) .. (612,81) .. controls (612,83.21) and (610.21,85) .. (608,85) .. controls (605.79,85) and (604,83.21) .. (604,81) -- cycle ;
+                %Shape: Circle [id:dp7886165036388684] 
+                \draw  [line width=1.5]  (681,81) .. controls (681,78.79) and (682.79,77) .. (685,77) .. controls (687.21,77) and (689,78.79) .. (689,81) .. controls (689,83.21) and (687.21,85) .. (685,85) .. controls (682.79,85) and (681,83.21) .. (681,81) -- cycle ;
+                %Straight Lines [id:da9746198975896199] 
+                \draw [line width=1.5]    (615,81) -- (681,81) ;
+                %Shape: Capacitor [id:dp054856437826402704] 
+                \draw  [line width=1.5]  (608.88,82.04) -- (609.11,129.32) (617.04,139.78) -- (601.29,139.86) (616.99,129.28) -- (601.24,129.35) (609.16,139.82) -- (609.39,187.1) ;
+                %Shape: Ground [id:dp7777433217211616] 
+                \draw  [line width=1.5]  (598.46,187.1) -- (609.39,199.45) -- (620.33,187.1) -- (598.46,187.1) -- cycle (609.39,180.92) -- (609.39,187.1) ;
+                %Straight Lines [id:da9673283350193784] 
+                \draw [line width=1.5]    (61,257) -- (675,255) ;
+                %Straight Lines [id:da8089571495299941] 
+                \draw [line width=1.5]    (61,257) -- (59.53,102) ;
+                \draw [shift={(59.5,99)}, rotate = 89.46] [color={rgb, 255:red, 0; green, 0; blue, 0 }  ][line width=1.5]    (14.21,-4.28) .. controls (9.04,-1.82) and (4.3,-0.39) .. (0,0) .. controls (4.3,0.39) and (9.04,1.82) .. (14.21,4.28)   ;
+                %Shape: Rectangle [id:dp826018722314718] 
+                \draw  [color={rgb, 255:red, 3; green, 0; blue, 252 }  ,draw opacity=1 ][dash pattern={on 4.5pt off 4.5pt}] (425,36) -- (643,36) -- (643,216) -- (425,216) -- cycle ;
+                %Straight Lines [id:da285329330205615] 
+                \draw [color={rgb, 255:red, 185; green, 3; blue, 3 }  ,draw opacity=1 ][line width=1.5]    (481,114) -- (552,114) ;
+                \draw [shift={(555,114)}, rotate = 180] [color={rgb, 255:red, 185; green, 3; blue, 3 }  ,draw opacity=1 ][line width=1.5]    (14.21,-4.28) .. controls (9.04,-1.82) and (4.3,-0.39) .. (0,0) .. controls (4.3,0.39) and (9.04,1.82) .. (14.21,4.28)   ;
+                
+                % Text Node
+                \draw (32,13) node [anchor=north west][inner sep=0.75pt]   [align=left] {$ $};
+                % Text Node
+                \draw (9,65.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$\mathit{r_{k\ }} \ \ +$};
+                % Text Node
+                \draw (78,66.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$e\mathit{_{k\ }} \ \ $};
+                % Text Node
+                \draw (39,94.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$-$};
+                % Text Node
+                \draw (193,64.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$\mathrm{PI\ controller} \ $};
+                % Text Node
+                \draw (121,86.4) node [anchor=north west][inner sep=0.75pt]  [font=\tiny]  {$u\mathit{_{k\ }} =u\mathit{_{k-1\ }} +\ k\mathit{_{c\ }}\left[\left( 1+\frac{T}{\mathcal{T_{i\ }}}\right) e\mathit{_{k\ }} -e\mathit{_{k-1\ }}\right]$};
+                % Text Node
+                \draw (193,15.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\mathtt{@Arduino} \ $};
+                % Text Node
+                \draw (349,62.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$\mathtt{UART}\mathsf{\ }$};
+                % Text Node
+                \draw (349,85.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$\mathtt{RS232}$};
+                % Text Node
+                \draw (450,46.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\mathtt{R}$};
+                % Text Node
+                \draw (546,48.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$L$};
+                % Text Node
+                \draw (597,57.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$\textcolor[rgb]{0.93,0.07,0.07}{v\mathit{_{c\ }}( t)}$};
+                % Text Node
+                \draw (665,60.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$\textcolor[rgb]{0.01,0.24,0.8}{y( t)}$};
+                % Text Node
+                \draw (500,122.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$\textcolor[rgb]{0.93,0.07,0.07}{i\mathit{_{L\ }}}\textcolor[rgb]{0.93,0.07,0.07}{(}\textcolor[rgb]{0.93,0.07,0.07}{t}\textcolor[rgb]{0.93,0.07,0.07}{)}$};
+                % Text Node
+                \draw (443,169.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$\textcolor[rgb]{0.01,0.03,0.09}{\boldsymbol{\dot{x}}\mathrm{( t) \ =\ }\boldsymbol{Ax}\mathrm{( t) \ }}\textcolor[rgb]{0.1,0,0}{\mathrm{+\ }\boldsymbol{Bu}\mathrm{( t) \ }}$};
+                % Text Node
+                \draw (442,186.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$\textcolor[rgb]{0,0.02,0.07}{\mathrm{y( t) \ =}\boldsymbol{Cx}\mathrm{( t)}}\mathrm{\textcolor[rgb]{0.01,0.24,0.8}{\ }}$};
+                % Text Node
+                \draw (473,13.4) node [anchor=north west][inner sep=0.75pt]  [font=\footnotesize]  {$\mathtt{\textcolor[rgb]{0.21,0.2,0.87}{@MATLAB\ ( ode45)}} \ $};
+                % Text Node
+                \draw (623,125.4) node [anchor=north west][inner sep=0.75pt]  [font=\small]  {$\mathtt{C}\mathsf{\ }$};
+                % Text Node
+                \draw (396,60.4) node [anchor=north west][inner sep=0.75pt]  [font=\scriptsize]  {$\textcolor[rgb]{0.01,0.24,0.8}{u(}\textcolor[rgb]{0.01,0.24,0.8}{t}\textcolor[rgb]{0.01,0.24,0.8}{)}$};
+            
+            \end{tikzpicture}
+        \end{figure}
+        
+\end{document}
